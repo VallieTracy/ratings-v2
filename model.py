@@ -69,7 +69,7 @@ def connect_to_db(flask_app, db_uri="postgresql:///ratings", echo=True):
     print("Connected to the db!")
 
 
-if __name__ == "__main__":
+if __name__ == "__main__": #does something so we can use our application
     from server import app
 
     # Call connect_to_db(app, echo=False) if your program output gets
