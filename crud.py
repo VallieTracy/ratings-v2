@@ -13,6 +13,11 @@ def create_user(email, password):
 
     return user
 
+def get_user_by_email(email):
+    """Return a user by email."""
+
+    return User.query.filter(User.email == email).first()
+
 def create_movie(title, overview, release_date, poster_path):
     """Create and return a new movie."""
 
