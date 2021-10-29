@@ -22,6 +22,30 @@ movies_in_db = []
 for movie in movie_data:
     # TODO: get the title, overview, and poster_path from the movie
     # dictionary. Then, get the release_date and convert it to a
-    # datetime object with datetime.strptime
+    # datetime object with datetime.strptime  
+    title, overview, poster_path = (
+        movie["title"],
+        movie["overview"],
+        movie["poster_path"]
+    )
+    release_date = datetime.strptime(movie["release_date"], "%Y-%m-%d")
+      # TODO: create a movie here and append it to movies_in_db
+    db_movie = crud.create_movie(title, overview, release_date, poster_path)
+    movies_in_db.append(db_movie)
 
-    # TODO: create a movie here and append it to movies_in_db
+    # Create 10 users; each user will make 10 ratings
+for n in range(10):
+    email = f"user{n}@test.com"  # Voila! A unique email!
+    password = "test"
+
+    user = crud.create_user(email, password)
+
+    for _ in range(10):
+        random_movie = choice(movies_in_db)
+        score = randint(1, 5)
+
+        crud.create_rating(user, random_movie, score)
+
+#for user_rating in rating.user.ratings_info:
+#...     print(user_rating.score)
+#^^^^ Can run this in terminal in interactive mode to view ratings for particular user
